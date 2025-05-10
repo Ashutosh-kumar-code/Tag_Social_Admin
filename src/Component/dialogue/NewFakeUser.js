@@ -184,7 +184,7 @@ function NewFakeUser(props) {
       if (!countryDataSelect) error.country = "Country is required !";
       if (!age) error.age = "Age is required !";
       if (!emailValid) {
-        error.email = "Email Invalid !";
+        error.email = "Email Invalid !"; 
       }
 
       if (!ipAddress) {
