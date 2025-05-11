@@ -132,7 +132,7 @@ function NewVideoAdd(props) {
       setImageUploadLoader(true);
     }
   }, [showVideoImg]);
-
+console.log("fakeUser====",fakeUser)
   useEffect(() => {
     const countryName = countryData?.map((item) => item?.name?.common);
     setCountry(countryName);
@@ -147,7 +147,7 @@ function NewVideoAdd(props) {
       });
     }
     const fakeUserChannelCheck = fakeUser?.filter(
-      (item) => item?.isChannel === true && item?.isBlock === false
+      (item) => item?.isBlock === false
     );
     setFakeUserData(fakeUserChannelCheck);
   }, [countryDataSelect, countryData, fakeUser]);
