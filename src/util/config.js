@@ -1,4 +1,4 @@
-export const baseURL = "https://tag-social-backend.onrender.com";
+export const baseURL = "https://tag-social-backend.onrender.com/";
 // export const baseURL = "http://localhost:3000";
 // export const baseURL = "https://tag-social-backend.vercel.app";
 export const secretKey = "myeLZ6Y3oS";
