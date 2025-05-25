@@ -189,21 +189,45 @@ function FakeUser(props) {
       ),
     },
     {
-      Header: "USERNAME",
-      body: "userName",
-      Cell: ({ row, index }) => (
-        <div
-          className="d-flex align-items-center"
-          style={{ cursor: "pointer" }}
-          onClick={() => handleEdit(row, "manageUser")}
-        >
-          <img src={showURLs[index]} width="40px" height="40px" />
-          <span className="text-capitalize   cursorPointer text-nowrap">
-            {row?.fullName}
-          </span>
-        </div>
-      ),
-    },
+  Header: "USERNAME",
+  body: "fullName", // This maps to the field from the backend
+  Cell: ({ row }) => (
+    <div
+      className="d-flex align-items-center gap-2"
+      style={{ cursor: "pointer" }}
+      onClick={() => handleEdit(row, "manageUser")}
+    >
+      <img
+        src={row?.image || UserImage}
+        alt="user"
+        width="40"
+        height="40"
+        style={{ borderRadius: "50%", objectFit: "cover" }}
+        onError={(e) => (e.target.src = UserImage)}
+      />
+      <span className="text-capitalize cursorPointer text-nowrap">
+        {row?.fullName}
+      </span>
+    </div>
+  ),
+},
+
+    // {
+    //   Header: "USERNAME",
+    //   body: "userName",
+    //   Cell: ({ row, index }) => (
+    //     <div
+    //       className="d-flex align-items-center"
+    //       style={{ cursor: "pointer" }}
+    //       onClick={() => handleEdit(row, "manageUser")}
+    //     >
+    //       <img src={showURLs[index]} width="40px" height="40px" />
+    //       <span className="text-capitalize   cursorPointer text-nowrap">
+    //         {row?.fullName}
+    //       </span>
+    //     </div>
+    //   ),
+    // },
     {
       Header: "EMAIL",
       body: "email",

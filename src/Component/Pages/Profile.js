@@ -11,6 +11,7 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import UserImage from "../../assets/images/8.jpg";
 
 import { covertURl, uploadFile } from "../../util/AwsFunction";
+import { REACT_APP_API_BASE_URL } from "../../util/config";
 
 function Profile(props) {
   const { admin } = useSelector((state) => state.admin);
@@ -64,21 +65,27 @@ function Profile(props) {
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const fileNameWithExtensionThumbnail = admin?.image?.split("/").pop();
-      const { imageURL: image } = await covertURl(
-        "userImage/" + fileNameWithExtensionThumbnail
-      );
-      setShowImage(image);
-    };
-    if (admin) {
-      fetchData();
-      const interval = setInterval(fetchData, 1000 * 60);
-      return () => clearInterval(interval);
-    }
-  }, [admin]);
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const fileNameWithExtensionThumbnail = admin?.image?.split("/").pop();
+//       const { imageURL: relativePath } = await covertURl(
+//         "userImage/" + fileNameWithExtensionThumbnail
+//       );
+//       const image = `${REACT_APP_API_BASE_URL}/uploads/${relativePath}`;
+//       setShowImage(image);
+//     };
+//     if (admin) {
+//       fetchData();
+//       const interval = setInterval(fetchData, 1000 * 60);
+//       return () => clearInterval(interval);
+//     }
+//   }, [admin]);
 
+useEffect(() => {
+  if (admin?.image) {
+    setShowImage(admin.image);
+  }
+}, [admin]);
 
   const handleEditProfile = () => {
 
@@ -117,7 +124,7 @@ function Profile(props) {
       props.changePassword(passwordData);
     }
   };
-
+console.log("showImage====#####",showImage)
   return (
     <div>
       <div className="profile-page payment-setting">

@@ -42,6 +42,7 @@ function Table(props) {
   const startIndex = (Page - 1) * PerPage;
   const endIndex = startIndex + PerPage;
   const currentPageData = data && data?.slice(startIndex, endIndex);
+  console.log("currentPageData==========",mapData)
 
   return (
     <>
@@ -82,7 +83,28 @@ function Table(props) {
               <tbody>
                 {sortedData.length > 0 ? (
                   <>
-                    {(PerPage > 0
+{(PerPage > 0
+  ? sortedData.slice(startIndex, endIndex)
+  : sortedData
+).map((i, k) => (
+  <tr key={k}>
+    {mapData.map((res, idx) => (
+      <td key={idx}>
+        {res.Cell ? (
+          <res.Cell row={i} index={k} />
+          
+        ) : (
+          <span className={res.class}>
+            {i[res.body] || "-"}
+          </span>
+        )}
+      </td>
+    ))}
+  </tr>
+))}
+
+
+                    {/* {(PerPage > 0
                       ? [sortedData].slice(
                           Page * PerPage,
                           Page * PerPage + PerPage
@@ -108,7 +130,7 @@ function Table(props) {
                           </tr>
                         </>
                       );
-                    })}
+                    })} */}
                   </>
                 ) : (
                   <tr>
